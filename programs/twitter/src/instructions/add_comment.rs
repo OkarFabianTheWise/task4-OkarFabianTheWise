@@ -7,22 +7,11 @@ pub fn add_comment(ctx: Context<AddCommentContext>, comment_content: String) -> 
     let comment = &mut ctx.accounts.comment;
 
     // -------------------------------------------------------------------------------------------
-    // TODO: In order for this function to work properly, we need to first check whether comment_content
-    // has the correct length. We want to copy comment_content into the bytearray which will be
-    // stored inside Comment Account. The bytearray can contain maximum of 500 bytes.
-
-    // HINT: Check out how the length check is performed within initialize_tweet function.
 
     require!(
         comment_content.as_bytes().len() <= COMMENT_LENGTH,
         TwitterError::CommentTooLong
     );
-    // -------------------------------------------------------------------------------------------
-
-    // TODO: Once we are sure that the length is correct, we have to copy contents of the comment_content
-    // into the bytearray.
-
-    // HINT: Take a look at how we copy the strings within the initialize_tweet function.
     // -------------------------------------------------------------------------------------------
 
     let mut content_data = [0u8; COMMENT_LENGTH];
